@@ -6,7 +6,7 @@ Tweetmonster will get tweets from the public Twitter APIs, and save them in sqli
 ### Usage
 
 ```
-python btf.py <parameters>
+python tm.py <parameters>
 ```
 
 ### Parameters
@@ -20,18 +20,21 @@ python btf.py <parameters>
 `-q`, `--query`, your boolean query typed within citation marks, e.g. `"fire AND ice"`, or `"#pizza"`, default = `"coffee OR tea"`
 
 
+As you will likely collect data for some time, it may be a good idea to run tm.py as a [background process](https://kb.iu.edu/d/afnz).
+
+
 ---
 ### Additional functions
 #### Progress inspector
 ```
-python btf_i.py <parameters>
+python tm_i.py <parameters>
 ```
 
 `-p`, `--project`, name of the project, default = "tm"
 #### Data extractor
 
 ```
-python btf_d.py <parameters>
+python tm_d.py <parameters>
 ```
 
 `-p`, `--project`, name of the project, default = "tm"
