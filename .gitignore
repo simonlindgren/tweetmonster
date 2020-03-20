@@ -2,11 +2,8 @@
 *.csv
 *.db
 
-# Local and personal edited version of btf.py file 
+# Local and personal edited version of tm.py file 
 tm_x.py
-
-# except
-!requirements.txt
 
 # Notebooks for dev
 *.ipynb
