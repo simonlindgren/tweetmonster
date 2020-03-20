@@ -19,7 +19,7 @@ from concurrent.futures import ThreadPoolExecutor
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-p", "--project", default = "tm")
+parser.add_argument("-p", "--project", default = "btf")
 parser.add_argument("-l", "--language", default = "all")
 parser.add_argument("-q", "--query", default = "coffee OR tea")
 parser.add_argument("-d", "--days", default = 10)
