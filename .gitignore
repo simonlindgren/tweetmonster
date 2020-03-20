@@ -3,7 +3,7 @@
 *.db
 
 # Local and personal edited version of btf.py file 
-btf_x.py
+tm_x.py
 
 # except
 !requirements.txt
