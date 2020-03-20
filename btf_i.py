@@ -10,7 +10,7 @@ import argparse
 import os
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-p", "--project", default = "btf")
+parser.add_argument("-p", "--project", default = "tm")
 args = parser.parse_args()
 
 def main():

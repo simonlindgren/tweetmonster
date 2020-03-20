@@ -1,6 +1,6 @@
 # TWEETMONSTER
 
-Tweetmonster will get tweets from the public Twitter APIs, and save them in sqlite3 format. It launches two simultaneous processes for one an the same search query, where one process goes as far back in time as possible (SearchAPI), and the other keeps streaming tweets live as they happen (StreamingAPI).
+Tweetmonster will get tweets from the public Twitter APIs, and save them in sqlite3 format. It launches two simultaneous processes for one and the same search query, where one process goes as far back in time as possible (SearchAPI), and the other keeps streaming tweets live as they happen (StreamingAPI).
 
 
 ### Usage
@@ -19,6 +19,24 @@ python btf.py <parameters>
 
 `-q`, `--query`, your boolean query typed within citation marks, e.g. `"fire AND ice"`, or `"#pizza"`, default = `"coffee OR tea"`
 
+
+---
+### Additional functions
+#### Progress inspector
+```
+python btf_i.py <parameters>
+```
+
+`-p`, `--project`, name of the project, default = "tm"
+#### Data extractor
+
+```
+python btf_d.py <parameters>
+```
+
+`-p`, `--project`, name of the project, default = "tm"
+
+`--csv`, set this flag to export not only to sqlite3 db, but also to a csv file
 
 ---
 
