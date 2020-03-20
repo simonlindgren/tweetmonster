@@ -20,7 +20,7 @@ python tm.py <parameters>
 `-d`, `--days`, the number of days _back_ in time collected, the SearchAPI offers up to around a week back, default = 10 (to get as much as possible) 
 
 
-As you will likely collect data for some time, it may be a good idea to run tm.py as a [background process](https://kb.iu.edu/d/afnz).
+As you will likely collect data for some time, it may be a good idea to run tm.py as a [`screen` session](https://linuxize.com/post/how-to-use-linux-screen).
 
 
 ---
