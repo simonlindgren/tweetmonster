@@ -23,6 +23,19 @@ parser.add_argument("-p", "--project", default = "tm")
 parser.add_argument("-d", "--days", default = 10)
 args = parser.parse_args()
 
+logo='''
+
+
+▀▀█▀▀ ░█──░█ ░█▀▀▀ ░█▀▀▀ ▀▀█▀▀ ░█▀▄▀█ ░█▀▀▀█ ░█▄─░█ ░█▀▀▀█ ▀▀█▀▀ ░█▀▀▀ ░█▀▀█ 
+─░█── ░█░█░█ ░█▀▀▀ ░█▀▀▀ ─░█── ░█░█░█ ░█──░█ ░█░█░█ ─▀▀▀▄▄ ─░█── ░█▀▀▀ ░█▄▄▀ 
+─░█── ░█▄▀▄█ ░█▄▄▄ ░█▄▄▄ ─░█── ░█──░█ ░█▄▄▄█ ░█──▀█ ░█▄▄▄█ ─░█── ░█▄▄▄ ░█─░█
+
+Written by Simon Lindgren <simon.lindgren@umu.se>
+                                                                                    
+'''
+
+print(logo)
+
 def main():
     q = open("q.txt","r").readlines()
     global keywords
