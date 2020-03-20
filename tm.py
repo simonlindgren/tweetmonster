@@ -20,12 +20,13 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-p", "--project", default = "tm")
-parser.add_argument("-l", "--language", default = "all")
-parser.add_argument("-q", "--query", default = "coffee OR tea")
 parser.add_argument("-d", "--days", default = 10)
 args = parser.parse_args()
 
 def main():
+    q = open("q.txt","r").readlines()
+    global keywords
+    keywords = [i.strip() for i in q] # Strip any leading/trailing whitespace from list items
     create_databases(args.project)    
     dual_launcher()  
     
@@ -56,7 +57,7 @@ def create_databases(projectname):
             print("Databases already exist with this project name!")
             sys.exit()
             
-def backward_collector(back_query,days_back):
+def backward_collector(days_back):
     from credentials import consumer_key, consumer_secret, access_token_secret, access_token    
     auth = OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
@@ -67,6 +68,9 @@ def backward_collector(back_query,days_back):
     
     start = str(datetime.date.today() - datetime.timedelta(days=days_back))
     
+    # Generate query formatted for the SearchAPI
+    back_query = " OR ".join(keywords)  
+     
     c = tweepy.Cursor(api.search,
                       q=back_query,
                       since = start,
@@ -110,7 +114,7 @@ def backward_collector(back_query,days_back):
         except StopIteration:
             break
             
-def forward_collector(forward_query):
+def forward_collector():
     from credentials import consumer_key, consumer_secret, access_token_secret, access_token  
     auth = OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
@@ -143,34 +147,26 @@ def forward_collector(forward_query):
     # Create a stream
     twitter_stream = tweepy.Stream(auth, MyStreamListener())
 
+    # Generate query formatted for the StreamingAPI
+    forward_query = keywords   
+    
     # Start streaming and check for errors
     while True:
         try:
-            if args.language is "all":
-                twitter_stream.filter(track=forward_query)
-            else:
-                twitter_stream.filter(track=forward_query, languages=[str(args.language)])   
+            twitter_stream.filter(track=forward_query)
+            
         except KeyError:
             pass
         except sqlite3.IntegrityError: # skip duplicate tweet ids
             pass
             
              
-def dual_launcher():
-  
-    # Set up querystring for backwards search (SearchAPI)
-    back_query = args.query
-    if args.language is not "all":
-        back_query = back_query + " lang:" + str(args.language) 
-    
-    # Set up querystring for forwards streaming (StreamingAPI)
-    forward_query = args.query
-    
+def dual_launcher():    
        
     # Launch
     pool = ThreadPoolExecutor(max_workers = 2)
-    pool.submit(backward_collector, back_query,args.days)
-    pool.submit(forward_collector, forward_query)
+    pool.submit(backward_collector, args.days)
+    pool.submit(forward_collector)
     
     #backward_collector(back_query,args.days)
     #forward_collector(forward_query)

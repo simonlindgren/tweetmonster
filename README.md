@@ -7,6 +7,8 @@ Tweetmonster will get tweets from the public Twitter APIs, and save them in sqli
 
 A valid set of Twitter api credentials must be provided in `credentials.py`.
 
+Enter queries as lines in `q.txt`.
+
 ```
 python tm.py <parameters>
 ```
@@ -15,11 +17,7 @@ python tm.py <parameters>
 
 `-p`, `--project`, name of the tweet collection project, default = "tm"
 
-`-l`, `--language`, set [a language](https://developer.twitter.com/en/docs/twitter-for-websites/twitter-for-websites-supported-languages/overview), default = all languages
-
 `-d`, `--days`, the number of days _back_ in time collected, the SearchAPI offers up to around a week back, default = 10 (to get as much as possible) 
-
-`-q`, `--query`, your boolean query typed within citation marks, e.g. `"fire AND ice"`, or `"#pizza"`, default = `"coffee OR tea"`
 
 
 As you will likely collect data for some time, it may be a good idea to run tm.py as a [background process](https://kb.iu.edu/d/afnz).
@@ -33,6 +31,7 @@ python tm_i.py <parameters>
 ```
 
 `-p`, `--project`, name of the project, default = "tm"
+
 #### Data extractor
 
 ```
