@@ -5,6 +5,8 @@ Tweetmonster will get tweets from the public Twitter APIs, and save them in sqli
 
 ### Usage
 
+A valid set of Twitter api credentials must be provided in `credentials.py`.
+
 ```
 python tm.py <parameters>
 ```
