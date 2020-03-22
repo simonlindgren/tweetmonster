@@ -5,14 +5,14 @@ from tweepy.auth import OAuthHandler
 import json
 
 from q import streamingquery
-from credentials import from credentials import consumer_key, consumer_secret, access_secret, access_token    
+from credentials import consumer_key, consumer_secret, access_secret, access_token    
 
 
 auth = OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_secret)
 api = tweepy.API(auth)
 
-conn = sqlite3.connect('livetweets.db')
+conn = sqlite3.connect('live.db')
 
 # Create a twitter listener
 counter = []

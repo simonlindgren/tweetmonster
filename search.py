@@ -7,13 +7,13 @@ from tweepy.auth import OAuthHandler
 import json
 
 from q import searchquery
-from credentials import from credentials import consumer_key, consumer_secret, access_secret, access_token    
+from credentials import consumer_key, consumer_secret, access_secret, access_token    
 
 auth = OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_secret)
 api = tweepy.API(auth)
 
-conn = sqlite3.connect('histtweets.db')
+conn = sqlite3.connect('hist.db')
 
 start = str(datetime.date.today() - datetime.timedelta(days=3))
 
@@ -53,7 +53,7 @@ while True:
             cursor = conn.cursor()
             cursor.execute("select * from tweets")
             r = cursor.fetchall()
-            print("\rTweet from " + str(tweet.created_at) + " (" + str(len(r)) +")              ", end='')
+            print("\rTweet from " + str(tweet.created_at) + " (" + str(len(r)) +")              ", end='')	
         except KeyError:
             print("Key Error")
 

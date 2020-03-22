@@ -1,6 +1,6 @@
 #!/bin/bash
 while true
 do
-	python stream.py
+	python3 stream.py
 	sleep 1
 done

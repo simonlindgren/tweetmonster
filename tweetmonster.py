@@ -3,6 +3,7 @@
 import os
 import sqlite3
 import shutil
+import pandas as pd
 from datetime import datetime
 
 
@@ -10,7 +11,7 @@ def make_databases(projectname):
     
     # Create first database and table
 
-    conn = sqlite3.connect(str(projectname) + "_live.db")
+    conn = sqlite3.connect("live.db")
     c = conn.cursor()
     c.execute("""CREATE TABLE tweets (
     id TEXT,
@@ -32,7 +33,7 @@ def make_databases(projectname):
 
     # Create second database and table
 
-    conn = sqlite3.connect(str(projectname) + "_hist.db")
+    conn = sqlite3.connect("hist.db")
     c = conn.cursor()
     c.execute("""CREATE TABLE tweets (
     id TEXT,
@@ -58,8 +59,8 @@ def extract_data(projectname):
     nowstring = now.strftime("%Y_%m%d_%H%m")  + "UTC"
     
 
-    shutil.copy(projectname + "_live.db", "templive.db")
-    shutil.copy(projectname + "_hist.db", "temphist.db")
+    shutil.copy("live.db", "templive.db")
+    shutil.copy("hist.db", "temphist.db")
     
     db_a = sqlite3.connect('templive.db')
     db_b = sqlite3.connect('temphist.db')
@@ -94,12 +95,11 @@ def extract_data(projectname):
     tweets_df = tweets_df.replace({'\t': ' '}, regex=True) # remove tabs in the dataframe
     tweets_df = tweets_df.replace({'\r': ' '}, regex=True) # remove carriage return in the dataframe
 
-    tweets_df.to_csv(str(args.project) + "_" + nowstring + ".csv", index = False, encoding='utf-8')
+    tweets_df.to_csv(projectname + "_" + nowstring + ".csv", index = False, encoding='utf-8')
 
 def dbkill():
     if input("This will delete ALL database files in this directory. Continue? (y/n)") != "y":
         exit()
-
     files = os.listdir()
 
     for item in files:
