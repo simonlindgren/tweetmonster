@@ -9,9 +9,8 @@ To set up the query, edit `q.txt` with one keyword per line.
 A set of valid Twitter API keys must be provided in `credentials.py`.
 
 ```
-python
-import tweetmonster as tm
-tm.make_databases("<your-project-name>")
+>>> import tweetmonster as tm
+>>> tm.make_databases("<your-project-name>")
 ```
 
 Long-term tweet collections jobs will inevitably break or run into errors that you have not been able to catch or predict with your code. A (nearly) fool-proof way of avoiding this, is to launch your collection jobs through persistent bash-scripts that will re-start relentlessly on any crash.
@@ -33,10 +32,11 @@ $ sh stream.sh
 
 #### Extract the data currently in the databases
 
+At any point during ongoing data collection.
+
 ```
-python
-import tweetmonster as tm
-tm.extract_data("<your-project-name>")
+>>> import tweetmonster as tm
+>>> tm.extract_data("<your-project-name>")
 
 ```
 
