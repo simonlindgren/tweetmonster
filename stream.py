@@ -57,5 +57,4 @@ while True:
     except sqlite3.IntegrityError: # skip duplicate tweet ids
         pass
 
-
 conn.close()

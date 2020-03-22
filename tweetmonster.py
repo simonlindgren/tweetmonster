@@ -6,11 +6,9 @@ import shutil
 import pandas as pd
 from datetime import datetime
 
-
 def make_databases(projectname):
     
     # Create first database and table
-
     conn = sqlite3.connect("live.db")
     c = conn.cursor()
     c.execute("""CREATE TABLE tweets (
@@ -28,11 +26,9 @@ def make_databases(projectname):
     UNIQUE(id))
     """)
     conn.close()
-
     print("First database created.")
 
     # Create second database and table
-
     conn = sqlite3.connect("hist.db")
     c = conn.cursor()
     c.execute("""CREATE TABLE tweets (
@@ -50,14 +46,12 @@ def make_databases(projectname):
     UNIQUE(id))
     """)
     conn.close()
-
     print("Second database created.")
 
     
 def extract_data(projectname):
     now = datetime.now() # current date and tim
     nowstring = now.strftime("%Y_%m%d_%H%m")  + "UTC"
-    
 
     shutil.copy("live.db", "templive.db")
     shutil.copy("hist.db", "temphist.db")
@@ -101,10 +95,7 @@ def dbkill():
     if input("This will delete ALL database files in this directory. Continue? (y/n)") != "y":
         exit()
     files = os.listdir()
-
     for item in files:
         if item.endswith(".db"):
             os.remove(item)
     print("Removed!")
-    
-    

@@ -23,8 +23,6 @@ c = tweepy.Cursor(api.search,
                   wait_on_rate_limit = True,
                   wait_on_rate_limit_notify=True).items()
 
-
-
 starttime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 print("Searching backwards since " + str(starttime))
 
