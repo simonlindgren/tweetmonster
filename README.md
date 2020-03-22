@@ -1,54 +1,51 @@
 # TWEETMONSTER
 
-Tweetmonster will get tweets from the public Twitter APIs, and save them in sqlite3 format. It launches two simultaneous processes for one and the same search query, where one process goes as far back in time as possible (SearchAPI), and the other keeps streaming tweets live as they happen (StreamingAPI).
+Twitter provides access to its data through a set of different APIs. Two of these are the Search API and the Streaming API. The public version of the Search API goes back 7 days in time. According to Twitter it "behaves similarly to, but not exactly like the Search feature available in Twitter mobile or web clients". It does not aspire to be a source of complete data. The public Streaming API returns tweets in realtime that match one or more filter predicates.
 
+While none of these methods promises to give access to *all* tweets on a given topic, they still return large amounts of relevant data for a number of applications. 
 
-### Usage
+Tweetmonster is a method for collecting tweets both a bit back in time, and in realtime, for a set of keywords. It uses the Search API to search back, and the Streaming API to stream in realtime. Tweet objects are parsed and written to two databases, that can eventually be merged into one database.
 
-A valid set of Twitter api credentials must be provided in `credentials.py`.
+## Usage 
 
-Enter queries as lines in `q.txt`.
+To set up the query, edit `q.txt` with one keyword per line.
 
-```
-python tm.py <parameters>
-```
-
-### Parameters
-
-`-p`, `--project`, name of the tweet collection project, default = "tm"
-
-`-d`, `--days`, the number of days _back_ in time collected, the SearchAPI offers up to around a week back, default = 10 (to get as much as possible) 
-
-
-As you will likely collect data for some time, it may be a good idea to run tm.py as a [`screen` session](https://linuxize.com/post/how-to-use-linux-screen).
-
-
----
-### Additional functions
-#### Progress inspector
-```
-python tm_i.py <parameters>
-```
-
-`-p`, `--project`, name of the project, default = "tm"
-
-#### Data extractor
+A set of valid Twitter API keys must be provided in `credentials.py`.
 
 ```
-python tm_d.py <parameters>
+python
+import tweetmonster as tm
+tm.make_databases("<your-project-name>")
 ```
 
-`-p`, `--project`, name of the project, default = "tm"
+Long-term tweet collections jobs will inevitably break or run into errors that you have not been able to catch or predict with your code. A fool-proof way of avoiding this, is to launch your collection jobs through persistent bash-scripts that will re-start relentlessly on any crash.
 
-`--csv`, set this flag to export not only to sqlite3 db, but also to a csv file
+To be able to keep track of your jobs, it is recommendable to run them as two separate [screen](https://linuxize.com/post/how-to-use-linux-screen/) sessions.
 
----
-
-### Prerequisites
-
-Run the following command to install package dependencies:
+#### Launch the backward search
 
 ```
-pip install -r requirements.txt
+$ sh search.sh
 ```
+
+#### Launch the forward search
+
+```
+$ sh stream.sh
+
+```
+
+#### Extract the data currently in the databases
+
+```
+python
+import tweetmonster as tm
+tm.extract_data("<your-project-name>")
+
+```
+
+-
+
+`tm.dbkill()` - delete all databases in the directory.
+
 
