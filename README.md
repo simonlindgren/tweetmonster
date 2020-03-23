@@ -1,12 +1,14 @@
 # TWEETMONSTER
 
-Tweetmonster is a method for collecting tweets both a bit back in time (as long as the SearchAPI allows), and in realtime, for a set of keywords. It uses the Search API to search back, and the Streaming API to stream in realtime. Tweet objects are parsed and written to two databases, that can eventually be merged into one database.
+Tweetmonster is a method for collecting tweets both a bit back in time (as long as the SearchAPI allows, ~7 days), and in realtime, for a set of keywords. It uses the Search API to search back, and the Streaming API to stream in realtime. Tweet objects are written to two databases, that can eventually be merged into one.
 
 ## Usage 
 
 To set up the query, edit `q.txt` with one keyword per line.
 
 A set of valid Twitter API keys must be provided in `credentials.py`.
+
+Create the databases:
 
 ```
 >>> import tweetmonster as tm
@@ -40,7 +42,7 @@ At any point during ongoing data collection.
 
 ```
 
--
+#### Drastic cleanup
 
 `tm.dbkill()` - delete all databases in the directory.
 
