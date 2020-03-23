@@ -19,19 +19,19 @@ Long-term tweet collections jobs will inevitably break or run into errors that y
 
 To be able to keep track of your jobs, it is recommendable to run them as two separate [screen](https://linuxize.com/post/how-to-use-linux-screen/) sessions.
 
-#### Launch the backward search (in one session)
+### Launch the backward search (in one session)
 
 ```
 $ sh search.sh
 ```
 
-#### Launch the forward search (in another session)
+### Launch the forward search (in another session)
 
 ```
 $ sh stream.sh
 ```
 
-#### Extract the data currently in the databases
+### Extract the data currently in the databases
 
 At any point during ongoing data collection.
 
@@ -40,8 +40,11 @@ At any point during ongoing data collection.
 >>> tm.extract_data("<your-project-name>")
 ```
 
-#### Drastic cleanup
+### Stopping the collection
+
+Enter the relevant `screen` sessions and terminate by `ctrl`+`C`, or do `ps aux | grep search` and `ps aux | grep stream` and `kill <process id>` for relevant processes.
+
+
+### Drastic cleanup
 
 `tm.dbkill()` - delete all databases in the directory.
-
-
