@@ -29,7 +29,6 @@ $ sh search.sh
 
 ```
 $ sh stream.sh
-
 ```
 
 #### Extract the data currently in the databases
