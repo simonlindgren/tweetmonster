@@ -38,7 +38,6 @@ At any point during ongoing data collection.
 ```
 >>> import tweetmonster as tm
 >>> tm.extract_data("<your-project-name>")
-
 ```
 
 #### Drastic cleanup
