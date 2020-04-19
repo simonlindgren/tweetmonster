@@ -18,7 +18,6 @@ conn = sqlite3.connect('live.db')
 counter = []
 
 class MyStreamListener(tweepy.StreamListener):
-    conn = sqlite3.connect('livetweets.db')
     def on_data(self, data):
         data = json.loads(data)
         tweet_id = int(data['id'])
